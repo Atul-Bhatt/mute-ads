@@ -2,8 +2,19 @@ let count = 0;
 const interval = setInterval(() => {
     console.log("Logging every 5 seconds...");
     count++;
-    if (count >= 10) { // Stops after 10 logs (50 sec)
+	muteHotstar();
+    if (count >= 2) { // Stops after 2 logs (10 sec)
         clearInterval(interval);
         console.log("Stopped logging.");
     }
 }, 5000);
+
+function muteHotstar() {
+    const muteButton = document.querySelector('button[data-testid="volume"]');
+    if (muteButton) {
+        muteButton.click();
+        console.log("🔇 Muted Hotstar!");
+    } else {
+        console.log("❌ Mute button not found!");
+    }
+}
