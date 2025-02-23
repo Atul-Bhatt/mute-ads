@@ -1,10 +1,9 @@
 {
-	"manifest_version": 3,
+	"manifest_version": 2,
 	"name": "Mute Advertisement",
 	"version": "1.0",
 	"description": "Recognizes advertisement and mutes",
-	"permissions": ["tabs", "scripting", "activeTab"],
-	"host_permissions": ["*://*/*"],
+	"permissions": ["<all_urls>", "tabs", "activeTab", "webRequest", "webRequestBlocking"],
 	"background": {
 		"service_worker": "background.js"
 	},

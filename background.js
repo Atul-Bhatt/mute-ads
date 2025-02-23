@@ -13,3 +13,14 @@ chrome.commands.onCommand.addListener((command) => {
         chrome.runtime.reload();
     }
 });
+
+chrome.webRequest.onBeforeRequest.addListener(
+    function (details) {
+        if (details.url.includes("bifrost-api.hotstar.com") && details.url.includes("adName=")) {
+            console.log("Ad detected via network request:", details.url);
+            chrome.tabs.sendMessage(details.tabId, { action: "mute" });
+        }
+    },
+    { urls: ["*://bifrost-api.hotstar.com/*"] },
+   ["blocking"]
+);
