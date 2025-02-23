@@ -1,0 +1,25 @@
+{
+	"manifest_version": 3,
+	"name": "Mute Advertisement",
+	"version": "1.0",
+	"description": "Recognizes advertisement and mutes",
+	"permissions": ["tabs", "scripting", "activeTab"],
+	"host_permissions": ["*://*/*"],
+	"background": {
+		"service_worker": "background.js"
+	},
+	"content_scripts": [
+		{
+			"matches": ["*://*/*"],
+			"js": ["content.js"]
+		}
+	],
+	"commands": {
+		"reload_extension": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+R"
+			},
+			"description": "Reloads the extension"
+		}
+	}
+}
