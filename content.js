@@ -17,10 +17,20 @@ chrome.runtime.onMessage.addListener((message) => {
 
 function muteHotstar() {
     const muteButton = document.querySelector('button[data-testid="volume"]');
-    if (muteButton) {
+    if (muteButton && muteButton.getAttribute("aria-label") === "Mute") {
         muteButton.click();
         console.log("Muted Hotstar!");
     } else {
         console.log("Mute button not found!");
+    }
+}
+
+function unmuteHotstar() {
+    const muteButton = document.querySelector('button[data-testid="volume"]');
+    if (muteButton && muteButton.getAttribute("aria-label") === "Unmute") {
+        muteButton.click();
+        console.log("Unmuted Hotstar!");
+    } else {
+        console.log("Unmute button not found!");
     }
 }
