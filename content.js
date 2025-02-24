@@ -1,32 +1,29 @@
-let count = 0;
-const interval = setInterval(() => {
-    console.log("Logging every 5 seconds...");
-    count++;
-	//muteHotstar();
-    if (count >= 2) { // Stops after 2 logs (10 sec)
-        clearInterval(interval);
-        console.log("Stopped logging.");
-    }
-}, 5000);
-
 chrome.runtime.onMessage.addListener((message) => {
     if (message.action === "mute") {
-        muteHotstar();
+        mute();
     }
 });
 
-function muteHotstar() {
+function mute() {
     const muteButton = document.querySelector('button[data-testid="volume"]');
+
     if (muteButton && muteButton.getAttribute("aria-label") === "Mute") {
         muteButton.click();
         console.log("Muted Hotstar!");
+
+	// unmute after 20 seconds
+	setTimeout(() => {
+		unmute();
+	}, 20000);
+
     } else {
         console.log("Mute button not found!");
     }
 }
 
-function unmuteHotstar() {
+function unmute() {
     const muteButton = document.querySelector('button[data-testid="volume"]');
+
     if (muteButton && muteButton.getAttribute("aria-label") === "Unmute") {
         muteButton.click();
         console.log("Unmuted Hotstar!");
